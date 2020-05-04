@@ -1,0 +1,13 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("Wyloguj", "Logout", "Account",null, new { @class = "nav-link color-header"})
+}
+else
+{
+    <li class="nav-item ml-4">
+        @Html.ActionLink("Logowanie", "Login", "Account", null, new { @class = "nav-link color-header" })
+    </li>
+    <li class="nav-item ml-4">
+        @Html.ActionLink("rejestracja", "Register", "Account", null, new { @class = "nav-link color-header" })
+    </li>
+}

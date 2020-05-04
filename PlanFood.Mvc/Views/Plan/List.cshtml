@@ -1,0 +1,50 @@
+﻿@model IList<Plan>
+@{
+    ViewData["Title"] = "List";
+}
+
+
+<div class="m-4 p-3 width-medium">
+    <div class="dashboard-content border-dashed p-3 m-4 view-height">
+        <div class="row border-bottom border-3 p-1 m-1">
+            <div class="col noPadding">
+                <h3 class="color-header text-uppercase">LISTA PLANÓW</h3>
+            </div>
+            <div class="col d-flex justify-content-end mb-2 noPadding">
+                @Html.ActionLink("Dodaj plan", "Add", "Plan", null, new { @class = "btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4" })
+            </div>
+        </div>
+
+        <div class="schedules-content">
+            <table class="table border-bottom">
+                <thead>
+                    <tr class="d-flex">
+                        <th class="col-1">ID</th>
+                        <th class="col-2">NAZWA</th>
+                        <th class="col-7">OPIS</th>
+                        <th class="col-2 center">AKCJE</th>
+                    </tr>
+                </thead>
+                <tbody class="text-color-lighter">
+
+                    @foreach (var item in @Model)
+                    {
+                        <tr class="d-flex">
+                            <td class="col-1">@item.Id</td>
+                            <td class="col-2">@item.Name</td>
+                            <td class="col-7">
+                                @item.Description
+                            </td>
+                            <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
+                                <a asp-action="Remove" asp-controller="Plan" asp-route-id="@item.Id" class="btn btn-danger rounded-0 text-light m-1" onclick="return confirm('Czy chcesz usunąć plan?')">Usuń</a>
+                                <a asp-action="Details" asp-controller="Plan" asp-route-id="@item.Id" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                <a asp-action="Edit" asp-controller="Plan" asp-route-id="@item.Id" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

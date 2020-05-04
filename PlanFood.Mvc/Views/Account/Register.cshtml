@@ -1,0 +1,43 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewBag.Title = "Rejestracja";
+    Layout = "_Layout";
+}
+
+
+@await Html.PartialAsync("_ValidationScriptsPartialView")
+<section class="dashboard-section">
+    <div class="container pt-4 pb-4">
+        <div class="border-dashed view-height">
+            <div class="container w-25">
+              
+                @Html.ValidationSummary()
+                <form class="padding-small text-center" asp-action="Register" asp-controller="Account" method="post">
+                    <h1 class="text-color-darker">Rejestracja</h1>
+                    <div class="form-group">
+                        <input asp-for="Name" type="text" class="form-control" placeholder="podaj imię">
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Surname" type="text" class="form-control" placeholder="podaj nazwisko">
+                        <span asp-validation-for="Surname"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Email" type="text" class="form-control" placeholder="podaj email">
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Password" type="password" class="form-control" placeholder="podaj hasło">
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="ReapeatPassword" type="password" class="form-control" placeholder="powtórz hasło">
+                        <span asp-validation-for="ReapeatPassword"></span>
+                    </div>
+                    <button class="btn btn-color rounded-0" type="submit">Zarejestruj</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

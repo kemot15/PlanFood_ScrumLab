@@ -1,0 +1,50 @@
+﻿@model ListRecipeViewModel
+@{
+    ViewData["Title"] = "Recipe";
+    Layout = "_Layout";
+}
+
+
+<section>
+    <div class="row padding-small">
+        <i class="fas fa-users icon-users"></i>
+        <h1>Przepisy naszych użytkowników:</h1>
+        <hr>
+        <div class="orange-line w-100"></div>
+    </div>
+</section>
+
+<section class="mr-4 ml-4">
+    <div>
+        <form asp-action="Recipe" asp-controller="Home" method="get">
+            <div class="form-group">
+                <label class="ml-2">Wyszukaj:</label>
+                <input class="form-control ml-2" asp-for="Search" />
+                <button class="btn btn-secondary m-2" type="submit">Wyszukaj</button>
+            </div>
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="d-flex text-color-darker">
+                <th scope="col" class="col-1">ID</th>
+                <th scope="col" class="col-5">NAZWA</th>
+                <th scope="col" class="col-5">OPIS</th>
+                <th scope="col" class="col-1">AKCJE</th>
+            </tr>
+        </thead>
+        <tbody class="text-color-lighter">
+            @foreach (var item in @Model.RecipeList)
+            {
+                <tr class="d-flex">
+                    <th scope="row" class="col-1">@item.Id</th>
+                    <td class="col-5">
+                        @item.Name
+                    </td>
+                    <td class="col-5">@item.Description</td>
+                    <td class="col-1"><a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

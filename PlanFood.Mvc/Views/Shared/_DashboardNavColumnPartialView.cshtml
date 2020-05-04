@@ -1,0 +1,48 @@
+﻿<ul class="nav flex-column long-bg">
+    <li class="nav-item">
+        <a class="nav-link" asp-action="Index" asp-controller="Dashboard">
+            <span>Pulpit</span>
+            <i class="fas fa-angle-right"></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-action="List" asp-controller="Recipe">
+            <span>Przepisy</span>
+            <i class="fas fa-angle-right"></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-action="List" asp-controller="Plan" class="nav-link">
+            <span>Plany</span>
+            <i class="fas fa-angle-right"></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-action="EditUser" asp-controller="Account" class="nav-link">
+            <span>Edytuj dane</span>
+            <i class="fas fa-angle-right"></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-action="EditUserPass" asp-controller="Account" class="nav-link disabled">
+            <span>Zmień hasło</span>
+            <i class="fas fa-angle-right"></i>
+        </a>
+    </li>
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Admin" asp-action="Show">
+                <span>Użytkownicy</span>
+                <i class="fas fa-angle-right"></i>
+            </a>
+        </li>
+    }
+
+    <li class="nav-item">
+        <a asp-action="Logout" asp-controller="Account" class="nav-link">
+            <span>Wyloguj</span>
+            <i class="fas fa-angle-right"></i>
+        </a>
+    </li>
+</ul>

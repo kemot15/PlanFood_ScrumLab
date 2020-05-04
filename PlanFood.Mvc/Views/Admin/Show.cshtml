@@ -1,0 +1,54 @@
+﻿@model IList<User>
+@{
+    ViewData["Title"] = "Show";
+}
+
+
+<div class="m-4 p-3 width-medium">
+    <div class="m-4 p-3 border-dashed view-height">
+
+        <div class="row border-bottom border-3 p-1 m-1">
+            <div class="col noPadding">
+                <h3 class="color-header text-uppercase">LISTA UŻYTKOWNIKÓW</h3>
+            </div>
+            <div class="col d-flex justify-content-end mb-2 noPadding">
+                <a asp-controller="Dashboard" asp-action="Index" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+            </div>
+        </div>
+
+        <div class="schedules-content">
+            <table class="table">
+                <thead>
+                    <tr class="d-flex">
+                        <th class="col-1">ID</th>
+                        <th class="col-3">IMIĘ</th>
+                        <th class="col-6">NAZWISKO</th>
+                        <th class="col-2 center">AKCJE</th>
+                    </tr>
+                </thead>
+                <tbody class="text-color-lighter">
+                    @foreach (var user in @Model)
+                    {
+                        <tr class="d-flex">
+                            <td class="col-1">@user.Id</td>
+                            <td class="col-3">@user.Name</td>
+                            <td class="col-6">@user.Surname</td>
+                            <td class="col-2 center">
+                                @if (user.LockoutEnabled && user.LockoutEnd != null)
+                                {
+                                    <a asp-action="Unlock" asp-controller="Admin" asp-route-id="@user.Id" class="btn btn-danger rounded-0 text-light m-1">Odblokuj</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Lock" asp-controller="Admin" asp-route-id="@user.Id" class="btn btn-warning rounded-0 text-light m-1">Blokuj</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
